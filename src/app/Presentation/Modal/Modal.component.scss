@@ -1,0 +1,80 @@
+
+jw-modal {
+  /* modals are hidden by default */
+  display: none;
+}
+
+.jw-modal-msgBody{
+  color: #6c757d;
+  font-size: medium;
+  padding: 5px;
+}
+[jw-Botton]
+.container-login100-form-jw-btn2{
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 20px;
+}
+.jw-modal-msgTittle{
+  color: #166AAB;
+  font-size: larger;
+  padding: 5px;
+  font-weight: lighter;
+}
+.jw-modal {
+  /* modal container fixed across whole screen */
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: gray,0.1;
+  margin: auto;
+  /* z-index must be higher than .jw-modal-background */
+  z-index: 1000;
+  /* enables scrolling for tall modals */
+  overflow: auto;
+}
+.jw-modal-body {
+  align-items: center;
+  padding: 20px 20px 20px 20px;
+  background-color: #F6F9FF;
+  border-radius: 2px;
+  width: 400px;
+  text-align: center;
+  /* margin exposes part of the modal background */
+  margin: 50px auto auto;
+}
+.jw-modal-background {
+  /* modal background fixed across whole screen */
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /* semi-transparent black  */
+  background-color: #000;
+  opacity: 0.75;
+  /* z-index must be below .jw-modal and above everything else  */
+  z-index: 900;
+}
+
+
+@media (max-width: 576px) {
+  .jw-modal-body{
+    width: 300px;
+  }
+}
+
+@media (max-width: 300px) {
+  .jw-modal-body{
+    width: 200px;
+  }
+
+}

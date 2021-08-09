@@ -1,0 +1,7 @@
+export class External_urls {
+  constructor(spotify: string) {
+    this.spotify = spotify;
+
+  }
+  spotify !: string;
+}

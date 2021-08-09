@@ -1,0 +1,329 @@
+<jw-modal id="SettingsFacade">
+  <h3 class="jw-modal-msgTittle">{{settingsFacade.ModalTitle}}</h3>
+  <p class="jw-modal-msgBody">{{settingsFacade.ModalBody}}</p>
+  <div class="row">
+    <div class="col-12 jw-buttonCenter">
+      <button (click)="closeModal('SettingsFacade');" type="submit" class="login100-form-jw-btn" style="padding: 10px" > Dismiss</button>
+    </div>
+  </div>
+</jw-modal>
+<div class="container">
+  <div class="center" id="CenterDiv" >
+    <div *ngIf="ShowArtists"  class="Search-input validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+      <input [(ngModel)]="ArtistName" (ngModelChange)= "OnTextChange($event)" class="input100" autoFocus type="text" autocomplete="off" placeholder="Search for an artist...." name="userNameOrEmailAddress"  />
+      <span class="focus-input100" ></span>
+      <span class="symbol-input100" >
+              <i class="fa fa-search" aria-hidden="true" id="UserName"></i>
+      </span>
+    </div>
+    <div *ngIf="!ShowArtists" >
+      <div class="Container">
+        <div class="row" style="padding-left: 0px">
+          <button class="btn" (click)="GetBack()"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Back To Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 20vh" id="MainContainer" class="fs-174">
+    <div class="container">
+      <div class="row" *ngIf="ShowArtists && SearchResponseModel">
+        <div class="col-12" style="font-size: 10px">
+          <div *ngFor="let artist of SearchResponseModel.items ; let i = index">
+            <div *ngIf="i%4 == 0;" class="container" style="margin: 5px;">
+              <div class="row">
+                <div style="margin-bottom: 30px" class="col-md-3 col-sm-6" *ngIf="SearchResponseModel.items[i]">
+                  <div class="container" (click)="GetAlbums(SearchResponseModel.items[i])" style="border: 1px solid gray;pointer-events: auto;">
+                    <div class="row" style="height: 200px;">
+                      <img *ngIf="SearchResponseModel.items[i].images.length != 0;else NullImage" src="{{SearchResponseModel.items[i].images[2].url}}" width="100%" height="100%">
+                      <ng-template #NullImage style="text-align: center">
+                        No Image
+                      </ng-template>
+                    </div>
+                    <div class="row" style="font-size: 7px">
+                      <b>{{SearchResponseModel.items[i].name}}</b>
+                    </div>
+                    <div class="row">
+                      {{SearchResponseModel.items[i].followers.total}} followers
+                    </div>
+                    <div class="row">
+                      <ngb-rating [rate]="SearchResponseModel.items[i].popularity / 20" style="font-size: 15px;color: orange"></ngb-rating>
+                    </div>
+                  </div>
+                </div>
+                <div style="margin-bottom: 30px;" class="col-md-3 col-sm-6" *ngIf="SearchResponseModel.items[i+1]">
+                  <div class="container" (click)="GetAlbums(SearchResponseModel.items[i+1])" style="border: 1px solid gray;pointer-events: auto;">
+                    <div class="row" style="height: 200px;">
+                      <img *ngIf="SearchResponseModel.items[i+1].images.length != 0;else NullImage" src="{{SearchResponseModel.items[i+1].images[2].url}}" width="100%" height="100%">
+                      <ng-template #NullImage style="text-align: center">
+                        No Image
+                      </ng-template>
+                    </div>
+                    <div class="row" style="font-size: 7px">
+                      <b>{{SearchResponseModel.items[i+1].name}}</b>
+                    </div>
+                    <div class="row">
+                      {{SearchResponseModel.items[i+1].followers.total}} followers
+                    </div>
+                    <div class="row">
+                      <ngb-rating [rate]="SearchResponseModel.items[i+1].popularity / 20" style="font-size: 15px;color: orange"></ngb-rating>
+                    </div>
+                  </div>
+                </div>
+                <div style="margin-bottom: 30px;" class="col-md-3 col-sm-6" *ngIf="SearchResponseModel.items[i+2]">
+                  <div class="container" (click)="GetAlbums(SearchResponseModel.items[i+2])" style="border: 1px solid gray;pointer-events: auto;">
+                    <div class="row" style="height: 200px;">
+                      <img *ngIf="SearchResponseModel.items[i+2].images.length != 0;else NullImage" src="{{SearchResponseModel.items[i+2].images[2].url}}" width="100%" height="100%">
+                      <ng-template #NullImage style="text-align: center">
+                        No Image
+                      </ng-template>
+                    </div>
+                    <div class="row" style="font-size: 7px">
+                      <b>{{SearchResponseModel.items[i+2].name}}</b>
+                    </div>
+                    <div class="row">
+                      {{SearchResponseModel.items[i+2].followers.total}} followers
+                    </div>
+                    <div class="row">
+                      <ngb-rating [rate]="SearchResponseModel.items[i+2].popularity /20" style="font-size: 15px;color: orange"></ngb-rating>
+                    </div>
+                  </div>
+                </div>
+                <div style="margin-bottom: 30px;" class="col-md-3 col-sm-6" *ngIf="SearchResponseModel.items[i+3]">
+                  <div class="container" (click)="GetAlbums(SearchResponseModel.items[i+3])" style="border: 1px solid gray;pointer-events: auto;">
+                    <div class="row" style="height: 200px;">
+                      <img *ngIf="SearchResponseModel.items[i+3].images.length != 0;else NullImage" src="{{SearchResponseModel.items[i+3].images[2].url}}" width="100%" height="100%">
+                      <ng-template #NullImage style="text-align: center">
+                        No Image
+                      </ng-template>
+                    </div>
+                    <div class="row" style="font-size: 7px">
+                      <b>{{SearchResponseModel.items[i+3].name}}</b>
+                    </div>
+                    <div class="row">
+                      {{SearchResponseModel.items[i+3].followers.total}} followers
+                    </div>
+                    <div class="row">
+                      <ngb-rating [rate]="SearchResponseModel.items[i+3].popularity / 20" style="font-size: 15px;color: orange"></ngb-rating>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="ShowArtists && SearchResponseModel">
+        <div *ngIf="SearchResponseModel.items" class="col-12" style="font-size: 10px">
+          <div class="container">
+            <div class="row">
+              <div class="col-12" style="text-align: right;margin: 20px">
+                <button class="btn" (click)="GetArtistsNext(SearchResponseModel.previous)"> <i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                <b>{{SearchResponseModel.offset}} ... {{SearchResponseModel.offset + SearchResponseModel.limit}}</b>
+                <button class="btn" (click)="GetArtistsPrevious(SearchResponseModel.next)"> <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                <b> Total : {{SearchResponseModel.total}} </b>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 20vh" *ngIf="!ShowArtists">
+        <div class="col-12" style="font-size: 10px">
+          <div class="Container">
+          <div class="row" >
+            <div class="col-md-3 col-sm-6">
+              <div class="container">
+                <div class="row">
+                  <div class="container">
+                    <div class="row" style="font-size: 15px">
+                      <div style="font-size: 20px" class="col-md-12 col-sm-12">
+                        <b>{{ArtistModel.name}}</b>
+                      </div>
+                      <div style="font-size: 15px" class="col-md-12 col-sm-12">
+                        Albums
+                      </div>
+
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="!ShowArtists">
+        <div class="col-12" style="font-size: 10px">
+          <div *ngFor="let album of GeneralAlbumsResponseModel.items ; let i = index">
+          <div *ngIf="i%4 == 0;" class="container" style="margin: 5px;">
+            <div class="row">
+              <div style="margin-bottom: 30px" class="col-md-3 col-sm-6" *ngIf="GeneralAlbumsResponseModel.items[i]">
+                <div class="container" style="border: 1px solid gray;pointer-events: auto;">
+                  <div class="row" style="height: 200px;">
+                    <img *ngIf="GeneralAlbumsResponseModel.items[i].images.length != 0;else NullImage" src="{{GeneralAlbumsResponseModel.items[i].images[2].url}}" width="100%" height="100%">
+                    <ng-template #NullImage style="text-align: center">
+                      No Image
+                    </ng-template>
+                  </div>
+                  <div class="row" style="font-size: 11px;height: 45px">
+                    <b>{{GeneralAlbumsResponseModel.items[i].name}}</b>
+                  </div>
+                  <div class="row" style="font-size: 8px">
+                    {{GeneralAlbumsResponseModel.items[i].artists[0].name}}
+                  </div>
+                  <br>
+                  <br>
+                  <div class="row" style="font-size: 7px">
+                    {{GeneralAlbumsResponseModel.items[i].release_date}}
+                  </div>
+                  <div class="row" style="font-size: 7px">
+                    {{GeneralAlbumsResponseModel.items[i].total_tracks}} tracks
+                  </div>
+                  <div class="row">
+                    <hr style="border: 1px solid gray;width: 100%;" size = "1">
+                  </div>
+                  <div class="row" style="text-align: center;padding-bottom: 10px">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-12">
+                          <a  target="_blank" href="{{GeneralAlbumsResponseModel.items[i].external_urls.spotify}}">Preview on Spotify</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-bottom: 30px" class="col-md-3 col-sm-6" *ngIf="GeneralAlbumsResponseModel.items[i+1]">
+                <div class="container" style="border: 1px solid gray;pointer-events: auto;">
+                  <div class="row" style="height: 200px;">
+                    <img *ngIf="GeneralAlbumsResponseModel.items[i+1].images.length != 0;else NullImage" src="{{GeneralAlbumsResponseModel.items[i+1].images[2].url}}" width="100%" height="100%">
+                    <ng-template #NullImage style="text-align: center">
+                      No Image
+                    </ng-template>
+                  </div>
+                  <div class="row" style="font-size: 11px;height: 45px">
+                    <b>{{GeneralAlbumsResponseModel.items[i+1].name}}</b>
+                  </div>
+                  <div class="row" style="font-size: 8px">
+                    {{GeneralAlbumsResponseModel.items[i+1].artists[0].name}}
+                  </div>
+                  <br>
+                  <br>
+                  <div class="row" style="font-size: 7px">
+                    {{GeneralAlbumsResponseModel.items[i+1].release_date}}
+                  </div>
+                  <div class="row" style="font-size: 7px">
+                    {{GeneralAlbumsResponseModel.items[i+1].total_tracks}} tracks
+                  </div>
+                  <div class="row">
+                    <hr style="border: 1px solid gray;width: 100%;" size = "1">
+                  </div>
+                  <div class="row" style="text-align: center;padding-bottom: 10px">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-12">
+                          <a  target="_blank" href="{{GeneralAlbumsResponseModel.items[i+1].external_urls.spotify}}">Preview on Spotify</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-bottom: 30px" class="col-md-3 col-sm-6">
+                <div class="container" style="border: 1px solid gray;pointer-events: auto;" *ngIf="GeneralAlbumsResponseModel.items[i+2]">
+                  <div class="row" style="height: 200px;">
+                    <img *ngIf="GeneralAlbumsResponseModel.items[i+2].images.length != 0;else NullImage" src="{{GeneralAlbumsResponseModel.items[i+2].images[2].url}}" width="100%" height="100%">
+                    <ng-template #NullImage style="text-align: center">
+                      No Image
+                    </ng-template>
+                  </div>
+                  <div class="row" style="font-size: 11px;height: 45px">
+                    <b>{{GeneralAlbumsResponseModel.items[i+2].name}}</b>
+                  </div>
+                  <div class="row" style="font-size:8px">
+                    {{GeneralAlbumsResponseModel.items[i+2].artists[0].name}}
+                  </div>
+                  <br>
+                  <br>
+                  <div class="row" style="font-size: 7px">
+                    {{GeneralAlbumsResponseModel.items[i+2].release_date}}
+                  </div>
+                  <div class="row" style="font-size: 7px">
+                    {{GeneralAlbumsResponseModel.items[i+2].total_tracks}} tracks
+                  </div>
+                  <div class="row">
+                    <hr style="border: 1px solid gray;width: 100%;" size = "1">
+                  </div>
+
+                  <div class="row" style="text-align: center;padding-bottom: 10px">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-12">
+                          <a  target="_blank"  href="{{GeneralAlbumsResponseModel.items[i+2].external_urls.spotify}}">Preview on Spotify</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-bottom: 30px" class="col-md-3 col-sm-6" *ngIf="GeneralAlbumsResponseModel.items[i+3]">
+                <div class="container" style="border: 1px solid gray;pointer-events: auto;">
+                  <div class="row" style="height: 200px;">
+                    <img *ngIf="GeneralAlbumsResponseModel.items[i+3].images.length != 0;else NullImage" src="{{GeneralAlbumsResponseModel.items[i+3].images[2].url}}" width="100%" height="100%">
+                    <ng-template #NullImage style="text-align: center">
+                      No Image
+                    </ng-template>
+                  </div>
+                  <div class="row" style="font-size: 11px;height: 45px">
+                    <b>{{GeneralAlbumsResponseModel.items[i+3].name}}</b>
+                  </div>
+                  <div class="row" style="font-size: 8px">
+                    {{GeneralAlbumsResponseModel.items[i+3].artists[0].name}}
+                  </div>
+                  <br>
+                  <br>
+                  <div class="row" style="font-size: 7px">
+                    {{GeneralAlbumsResponseModel.items[i+3].release_date}}
+                  </div>
+                  <div class="row" style="font-size: 7px">
+                    {{GeneralAlbumsResponseModel.items[i+3].total_tracks}} tracks
+                  </div>
+                  <div class="row">
+                    <hr style="border: 1px solid gray;width: 100%;" size = "1">
+                  </div>
+                  <div class="row" style="text-align: center;padding-bottom: 10px">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-12" >
+                          <a target="_blank"  href="{{GeneralAlbumsResponseModel.items[i+3].external_urls.spotify}}">Preview on Spotify</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="!ShowArtists">
+        <div *ngIf="GeneralAlbumsResponseModel.items" class="col-12" style="font-size: 10px">
+          <div class="container">
+            <div class="row">
+              <div class="col-12" style="text-align: right;margin: 20px">
+                <button class="btn" (click)="GetArtistAlbumsNext(GeneralAlbumsResponseModel.previous)"> <i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                <b>{{GeneralAlbumsResponseModel.offset}} ... {{GeneralAlbumsResponseModel.offset + GeneralAlbumsResponseModel.limit}}</b>
+                <button class="btn" (click)="GetArtistsAlbumsPrevious(GeneralAlbumsResponseModel.next)"> <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                <b> Total : {{GeneralAlbumsResponseModel.total}} </b>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

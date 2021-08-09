@@ -1,0 +1,27 @@
+import {ArtistResponseModel} from './ArtistResponseModel';
+export class SearchResponseModel {
+  constructor(
+    href: string,
+    limit: string,
+    next: string,
+    offset: string,
+    previous: string,
+    total: string,
+    items: Array<ArtistResponseModel>
+  ) {
+    this.href = href;
+    this.items = items;
+    this.limit = limit;
+    this.next = next;
+    this.offset = offset;
+    this.previous = previous;
+    this.total = total;
+  }
+  href !: string;
+  limit !: string;
+  next !: string;
+  offset !: string;
+  previous !: string;
+  total !: string;
+  items !: Array<ArtistResponseModel>;
+}

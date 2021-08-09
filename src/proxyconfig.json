@@ -1,0 +1,12 @@
+{
+  "/api": {
+    "authApi": "https://accounts.spotify.com",
+    "searchApi": "https://api.spotify.com/v1"
+  },
+  "/Spotify" : {
+    "ClientId" : "3982684af4cc445ebfb390c58752516e",
+    "ClientSecret" : "e0b4414ad39d4b138edda0a4017a50a3",
+    "RedirectUri" : "http://localhost:4200/login",
+    "Scopes" : "user-read-private user-read-email"
+  }
+}
