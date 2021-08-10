@@ -35,8 +35,9 @@ export class AuthenticationServiceAPI {
     xhr.send(body1);
     return xhr;
   }
-  RefreshToken(): any{
+  RefreshToken(): XMLHttpRequest{
     let RefreshToken = localStorage.getItem('refresh_token');
+    console.log(RefreshToken);
     let client_id = proxyconfig['/Spotify'].ClientId ;
     let client_secret = proxyconfig['/Spotify'].ClientSecret;
     const xhr = new XMLHttpRequest();
@@ -47,13 +48,6 @@ export class AuthenticationServiceAPI {
     body1 += '&refresh_token=' + RefreshToken;
     body1 += '&client_id=' + client_id;
     xhr.send(body1);
-    xhr.onload = () => {
-      if (xhr.status !== 200) {
-        return;
-      }
-      const data = JSON.parse(xhr.response);
-      localStorage.setItem('access_token', data.access_token);
-      localStorage.setItem('refresh_token', data.refresh_token);
-    };
+    return xhr;
   }
 }

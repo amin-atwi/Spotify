@@ -63,8 +63,9 @@ export class SettingsFacade {
     return this.searchServiceAPI.SearchArtist(searchModel)
       .pipe(
         catchError((error: HttpErrorResponse) => {
+          console.log(error);
           if ( error.status === 401){
-            this.authenticationServiceAPI.RefreshToken();
+            this.RefreshToken();
           }else{
             this.openModal('Error', 'Something went wrong');
           }
@@ -77,7 +78,7 @@ export class SettingsFacade {
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if ( error.status === 401){
-            this.authenticationServiceAPI.RefreshToken();
+            this.RefreshToken();
           }else{
             this.openModal('Error', 'Something went wrong');
           }
@@ -91,7 +92,7 @@ export class SettingsFacade {
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if ( error.status === 401){
-            this.authenticationServiceAPI.RefreshToken();
+            this.RefreshToken();
           }else{
             this.openModal('Error', 'Something went wrong');
           }
@@ -104,7 +105,7 @@ export class SettingsFacade {
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if ( error.status === 401){
-            this.authenticationServiceAPI.RefreshToken();
+            this.RefreshToken();
           }else{
             this.openModal('Error', 'Something went wrong');
           }
@@ -112,7 +113,21 @@ export class SettingsFacade {
         })
       );
   }
-
+  RefreshToken() {
+    const  xhr = this.authenticationServiceAPI.RefreshToken();
+    xhr.onload = () => {
+      if (xhr.status == 200) {
+        const data = JSON.parse(xhr.response);
+        if( data.access_token != undefined && data.refresh_token != undefined) {
+          localStorage.setItem('access_token', data.access_token);
+          localStorage.setItem('refresh_token', data.refresh_token);
+        }else{
+          this.openModal("Error","Something went wrong");
+          this.ForwardTo("Login");
+        }
+      }
+    };
+  }
   openModal(Tittle: string, Body: string): void {
     this.ModalTitle = Tittle;
     this.ModalBody = Body;
