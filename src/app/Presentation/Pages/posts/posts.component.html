@@ -117,9 +117,9 @@
           <div class="container">
             <div class="row">
               <div class="col-12" style="text-align: right;margin: 20px">
-                <button class="btn" (click)="GetArtistsNext(SearchResponseModel.previous)"> <i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                <button class="btn" (click)="GetArtistsPrevious(SearchResponseModel.previous)"> <i class="fa fa-arrow-left" aria-hidden="true"></i></button>
                 <b>{{SearchResponseModel.offset}} ... {{SearchResponseModel.offset + SearchResponseModel.limit}}</b>
-                <button class="btn" (click)="GetArtistsPrevious(SearchResponseModel.next)"> <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                <button class="btn" (click)="GetArtistsNext(SearchResponseModel.next)"> <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
                 <b> Total : {{SearchResponseModel.total}} </b>
               </div>
             </div>
