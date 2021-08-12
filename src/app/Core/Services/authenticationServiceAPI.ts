@@ -37,7 +37,6 @@ export class AuthenticationServiceAPI {
   }
   RefreshToken(): XMLHttpRequest{
     let RefreshToken = localStorage.getItem('refresh_token');
-    console.log(RefreshToken);
     let client_id = proxyconfig['/Spotify'].ClientId ;
     let client_secret = proxyconfig['/Spotify'].ClientSecret;
     const xhr = new XMLHttpRequest();

@@ -63,7 +63,6 @@ export class SettingsFacade {
     return this.searchServiceAPI.SearchArtist(searchModel)
       .pipe(
         catchError((error: HttpErrorResponse) => {
-          console.log(error);
           if ( error.status === 401){
             this.RefreshToken();
           }else{
@@ -123,8 +122,11 @@ export class SettingsFacade {
           localStorage.setItem('refresh_token', data.refresh_token);
         }else{
           this.openModal("Error","Something went wrong");
-          this.ForwardTo("Login");
+          this.ForwardTo("login");
         }
+      }else{
+        console.log(xhr.status);
+        this.ForwardTo("login");
       }
     };
   }

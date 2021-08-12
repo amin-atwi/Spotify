@@ -12,7 +12,6 @@ import {AbstractionModule} from '../../Abstraction/abstraction.module';
 import {ModalService} from '../../Core/Services/ModalService';
 import {ModalComponent} from '../Modal/modal.component';
 import {FormsModule} from '@angular/forms';
-import {MDBRootModule} from 'angular-bootstrap-md';
 import {NgbRatingModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -32,7 +31,6 @@ import {NgbRatingModule} from '@ng-bootstrap/ng-bootstrap';
     AbstractionModule,
     CoreModule,
     FormsModule,
-    MDBRootModule,
     NgbRatingModule,
   ],
   providers: [

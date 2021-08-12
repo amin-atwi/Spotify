@@ -9,7 +9,6 @@ import {PagesModule} from './Presentation/Pages/pages.module';
 import {CoreModule} from './Core/core.module';
 import {AbstractionModule} from './Abstraction/abstraction.module';
 import {HttpClientModule} from '@angular/common/http';
-import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -18,7 +17,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [
     BrowserModule,
-    MDBBootstrapModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule,
     DefaultModule,
